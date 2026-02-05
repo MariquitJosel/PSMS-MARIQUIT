@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/cruduser/allusers.java</file>
             <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/psms/mariquit/register.java</file>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/config/passwordHasher.java</file>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/cruduser/profileinfo.java</file>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/images/pigimage.png</file>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/database/pigsale.sql</file>
             <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/psms/mariquit/login.java</file>
-            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/psms/mariquit/dashboard.java</file>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/user_interface/User_dashboard.java</file>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/admin_interface/Admin_dashboard.java</file>
+            <file>file:/C:/Users/Teves/OneDrive/Documents/NetBeansProjects/PSMS-MARIQUIT/src/config/Session.java</file>
         </group>
     </open-files>
 </project-private>

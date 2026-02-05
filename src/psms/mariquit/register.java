@@ -6,8 +6,13 @@
 package psms.mariquit;
 
 
+import config.dbconnect;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -87,13 +92,16 @@ public class register extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         showpass = new javax.swing.JCheckBox();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
+        contact = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -106,18 +114,18 @@ public class register extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTER");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 350, 50));
-        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 350, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 350, 50));
+        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 350, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 0));
         jLabel3.setText("Email:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 350, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 350, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("or");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 350, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 350, 30));
 
         jLabel5.setBackground(new java.awt.Color(0, 153, 0));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,7 +137,7 @@ public class register extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 350, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 540, 350, 30));
 
         jLabel6.setBackground(new java.awt.Color(0, 153, 0));
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -142,12 +150,12 @@ public class register extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 350, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 350, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 153, 0));
         jLabel7.setText("Full name:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 350, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 350, -1));
 
         showpass.setBackground(new java.awt.Color(255, 255, 255));
         showpass.setText("Show password");
@@ -156,44 +164,59 @@ public class register extends javax.swing.JFrame {
                 showpassActionPerformed(evt);
             }
         });
-        jPanel1.add(showpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 350, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PIG SALES MANAGEMENT SYSTEM");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 220, 30));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 68)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("PSMS");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 220, 80));
+        jPanel1.add(showpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 350, -1));
 
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailActionPerformed(evt);
             }
         });
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 350, 40));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 350, 40));
 
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordActionPerformed(evt);
             }
         });
-        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 350, 40));
+        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 350, 40));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 153, 0));
         jLabel11.setText("Password:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, 350, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, 350, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel12.setText("Username:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 350, -1));
-        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 350, 40));
+        jLabel12.setText("Contact number:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 350, -1));
+        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, 350, 40));
+
+        contact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactActionPerformed(evt);
+            }
+        });
+        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 350, 40));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel13.setText("Username:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 350, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pigimage.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 260, 180));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 68)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("PSMS");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 220, 60));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("PIG SALES MANAGEMENT SYSTEM");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 220, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,7 +226,7 @@ public class register extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
         );
 
         pack();
@@ -235,26 +258,41 @@ public class register extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
      dbconnect dbc = new dbconnect();
        String emailInput = email.getText();
-     if(fullname.getText() .isEmpty() || email.getText() .isEmpty()|| username.getText() .isEmpty()|| password.getText().isEmpty()){
-     JOptionPane.showMessageDialog(null,"all field are required");
+     if(fullname.getText() .isEmpty() || email.getText() .isEmpty()|| username.getText() .isEmpty()|| contact.getText() .isEmpty()|| password.getText().isEmpty()){
+        JOptionPane.showMessageDialog(null,"all field are required");
+     }
+     else if(!(contact.getText().matches("\\d+"))){
+         JOptionPane.showMessageDialog(null,"numbers only");
      }
      else if (!isValidEmail(emailInput)){}
+     else if (contact.getText().length() != 11){ 
+        JOptionPane.showMessageDialog(null,"contact number must exactly be 11 digits");
+     }
      else if (!(password.getText().length() >= 8)){ 
-     JOptionPane.showMessageDialog(null,"password should have 8 characters and above");
+        JOptionPane.showMessageDialog(null,"password should have 8 characters and above");
      }
      else if(duplicatecheck()){}
      else {   
-                
-         int db = dbc.insertData("INSERT INTO users(fullname, email, username,password) VALUES ('"
+         try {      
+             String pass = passwordHasher.hashPassword(password.getText());
+             int db = dbc.insertData("INSERT INTO users(fullname, email,contact, username,password, status, usertype) VALUES ('"
                  + fullname.getText() + "', '"
                  + email.getText() + "', '"
+                 + contact.getText() + "', '"
                  + username.getText() + "', '"
-                 + password.getText() + "')");
+                 + pass + "', 'pending', 'User')");
          JOptionPane.showMessageDialog(null,"users account created successfully.");
+        }catch(NoSuchAlgorithmException ex){
+                    System.out.println(""+ex);}
+         
      login log = new login(); 
      log.setVisible(true);
      this.dispose();}
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,18 +331,21 @@ public class register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField contact;
     private javax.swing.JTextField email;
     private javax.swing.JTextField fullname;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField password;
     private javax.swing.JCheckBox showpass;

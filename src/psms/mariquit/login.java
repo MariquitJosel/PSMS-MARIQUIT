@@ -6,9 +6,16 @@
 package psms.mariquit;
 
 
+import admin_interface.Admin_dashboard;
+import config.Session;
+import config.dbconnect;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import user_interface.User_dashboard;
 
 /**
  *
@@ -24,15 +31,39 @@ public class login extends javax.swing.JFrame {
     }
     
 
-    public boolean loginAcc(String uname, String pass){
+    static String hashedpassword, rehashedpassword, usname,status,typee;   
+    static int uid;
+    public boolean loginAcc(String username, String password){
     dbconnect dbc = new dbconnect();
     
         try {
-                String query = "SELECT * FROM users WHERE username = '"+uname+"' AND password = '"+pass+"'";
+                String query = "SELECT * FROM users WHERE username = '"+username+"'";
                 ResultSet resultSet = dbc.getData(query);
-                return resultSet.next();
-        
-            }catch (SQLException ex) {
+            if(resultSet.next()){
+                   hashedpassword = resultSet.getString("password");
+                   rehashedpassword = passwordHasher.hashPassword(password);
+                    
+                   uid = resultSet.getInt("userid");
+                   usname = resultSet.getString("username");
+                   status= resultSet.getString("status");
+                    typee = resultSet.getString("usertype");
+                    Session sess = Session.getInstance();
+                    sess.setId(resultSet.getInt("userid"));
+                    sess.setFname(resultSet.getString("fullname"));
+                    sess.setEmail(resultSet.getString("email"));
+                    sess.setContact(resultSet.getString("contact"));
+                    sess.setUsername(resultSet.getString("username"));
+                    sess.setType(resultSet.getString("usertype"));
+                    sess.setStatus(resultSet.getString("status"));
+                    sess.setPassword(resultSet.getString("password"));
+                    sess.setUimage(resultSet.getString("Uimage"));           
+                                    
+                   
+                     return true;
+            }else{
+                    return false;
+            }            
+            }catch (SQLException | NoSuchAlgorithmException ex) {
                     System.out.println(""+ex);
                     return false;
             }
@@ -48,7 +79,6 @@ public class login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
@@ -56,12 +86,14 @@ public class login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         showpass = new javax.swing.JCheckBox();
+        warning = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1024, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1024, 600));
@@ -71,13 +103,7 @@ public class login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOGIN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 350, 70));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PIG SALES MANAGEMENT SYSTEM");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 220, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 350, 50));
         jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 350, 40));
 
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -127,12 +153,6 @@ public class login extends javax.swing.JFrame {
         jLabel7.setText("Username:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 350, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 68)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("PSMS");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 220, 80));
-
         showpass.setBackground(new java.awt.Color(255, 255, 255));
         showpass.setText("Show password");
         showpass.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +161,26 @@ public class login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(showpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 350, -1));
+
+        warning.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        warning.setForeground(new java.awt.Color(204, 0, 0));
+        warning.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(warning, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 340, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pigimage.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 260, 180));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("PIG SALES MANAGEMENT SYSTEM");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 220, 20));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 68)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("PSMS");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 220, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,15 +216,40 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_showpassActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+           dbconnect dbc = new dbconnect();
+        
+        if(loginAcc(username.getText(),password.getText())){
+            if(! hashedpassword.equals(rehashedpassword)){
+                     warning.setText("incorrect password");
+                     password.setText("");
+                } 
+            else if(!usname.equals(username.getText())){
+                     warning.setText("Incorrect username");
+                     username.setText("");
+                }
+            else if(!status.equalsIgnoreCase("active")){
+                warning.setText("Account inactive, please contact the admin");
+                     username.setText("");
+                     password.setText("");
+                }
+            else{
+            
+            if(typee.equals("Admin")){
+                Admin_dashboard admdash = new Admin_dashboard();
+                admdash.setVisible(true);
+               this.dispose();
+               
+            }else if(typee.equals("User")){
+                User_dashboard usrdash = new User_dashboard();
+                usrdash.setVisible(true);
+                this.dispose(); 
+              
+            }else{
+                JOptionPane.showMessageDialog(null,"No account type found!!");
+            }
+            }
 
-       if(loginAcc(username.getText(),password.getText())){
-       JOptionPane.showMessageDialog(null,"Login success");
-       dashboard dash = new dashboard();
-        dash.setVisible(true);
-        this.dispose();
-       }else{
-       JOptionPane.showMessageDialog(null,"Login failed");
-       }
+        }else{JOptionPane.showMessageDialog(null,"login failed!");}
     }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
@@ -224,16 +289,18 @@ public class login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField password;
     private javax.swing.JCheckBox showpass;
     private javax.swing.JTextField username;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }
