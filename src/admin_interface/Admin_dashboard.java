@@ -6,11 +6,13 @@
 package admin_interface;
 
 import config.Session;
+import crudpigs.allpigs;
 import cruduser.allusers;
 import cruduser.profileinfo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import psms.mariquit.login;
+import transaction.alltransact;
 
 /**
  *
@@ -92,6 +94,11 @@ public class Admin_dashboard extends javax.swing.JFrame {
         pigbutton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pigbutton1.setText("PIG");
         pigbutton1.setOpaque(true);
+        pigbutton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pigbutton1MouseClicked(evt);
+            }
+        });
         jPanel1.add(pigbutton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 300, 60));
 
         buybutton.setBackground(new java.awt.Color(0, 153, 0));
@@ -100,6 +107,11 @@ public class Admin_dashboard extends javax.swing.JFrame {
         buybutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         buybutton.setText("BUY");
         buybutton.setOpaque(true);
+        buybutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buybuttonMouseClicked(evt);
+            }
+        });
         jPanel1.add(buybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 300, 60));
 
         profile.setBackground(new java.awt.Color(0, 153, 0));
@@ -200,6 +212,18 @@ public class Admin_dashboard extends javax.swing.JFrame {
     private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
             System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_settingsMouseClicked
+
+    private void pigbutton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pigbutton1MouseClicked
+       allpigs all = new allpigs();
+       all.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_pigbutton1MouseClicked
+
+    private void buybuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buybuttonMouseClicked
+        alltransact all = new alltransact();
+        all.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buybuttonMouseClicked
 
     /**
      * @param args the command line arguments
