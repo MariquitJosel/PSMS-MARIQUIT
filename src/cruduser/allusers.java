@@ -12,7 +12,6 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -22,9 +21,7 @@ import user_interface.User_dashboard;
 
 public class allusers extends javax.swing.JFrame {
 
-    /**
-     * Creates new form allusers
-     */
+
     public allusers() {
         initComponents();
         displayData();
@@ -53,6 +50,47 @@ public class allusers extends javax.swing.JFrame {
         }
 
     }
+        
+        public void searchdata(){
+    try{
+        dbconnect dbc = new dbconnect();
+        
+        String keyword = search.getText().trim();
+
+        if(keyword.isEmpty()){
+            displayData(); // your method that loads all users
+            return;
+        }
+
+        String query = "SELECT userid, fullname, email, usertype, status FROM users "
+                     + "WHERE userid LIKE '%" + keyword + "%' "
+                     + "OR fullname LIKE '%" + keyword + "%' "
+                     + "OR email LIKE '%" + keyword + "%' "
+                     + "OR usertype LIKE '%" + keyword + "%' "
+                     + "OR status LIKE '%" + keyword + "%'";
+
+        ResultSet rs = dbc.getData(query);
+
+        if (!rs.isBeforeFirst()) {
+            JOptionPane.showMessageDialog(null, "No users found.");
+            displayData();
+            return;
+        }
+
+        userstable.setModel(DbUtils.resultSetToTableModel(rs));
+
+        TableColumnModel columnModel = userstable.getColumnModel();
+        columnModel.getColumn(0).setHeaderValue("ID");
+        columnModel.getColumn(1).setHeaderValue("Full name");
+        columnModel.getColumn(2).setHeaderValue("Email");
+        columnModel.getColumn(3).setHeaderValue("User type");
+        columnModel.getColumn(4).setHeaderValue("User status");
+        userstable.getTableHeader().repaint();
+
+    }catch(SQLException ex){
+        System.out.println("Errors: "+ex.getMessage());
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,6 +114,8 @@ public class allusers extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         userstable = new javax.swing.JTable();
         id = new javax.swing.JLabel();
+        search = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -186,11 +226,25 @@ public class allusers extends javax.swing.JFrame {
         userstable.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(userstable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 760, 570));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 760, 520));
 
         id.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         id.setText("id");
         jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, 90, 40));
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 380, 40));
+
+        jLabel2.setBackground(new java.awt.Color(0, 153, 0));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("SEARCH");
+        jLabel2.setOpaque(true);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 190, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 640));
 
@@ -350,6 +404,13 @@ int rowIndex = userstable.getSelectedRow();
 
     }//GEN-LAST:event_deleteuserMouseClicked
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        if(search.getText().isEmpty()){
+        }
+        else{
+            searchdata();}
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -393,8 +454,10 @@ int rowIndex = userstable.getSelectedRow();
     private javax.swing.JLabel edituser;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField search;
     private javax.swing.JLabel uname;
     private javax.swing.JTable userstable;
     private javax.swing.JLabel usertype;

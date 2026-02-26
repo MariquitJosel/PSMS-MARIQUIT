@@ -8,7 +8,7 @@ public class Session {
    private String email;
    private String sex;
    private String username;
-   private String birthdate;
+   private String address;
    private String type;
    private String status;
    private String password;
@@ -45,7 +45,7 @@ public class Session {
         this.fname = fname;
     }
     public String getContact() {
-        return fname;
+        return contact;
     }
 
     public void setContact(String contact) {
@@ -99,6 +99,14 @@ public class Session {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+        public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getString(String uimage) {

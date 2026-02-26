@@ -5,12 +5,17 @@
         <group>
             <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/transaction/addtransact.java</file>
             <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/crudpigs/pigview.java</file>
-            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/crudpigs/addpigs.java</file>
             <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/crudpigs/allpigs.java</file>
-            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/cruduser/adduser.java</file>
+            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/cruduser/allusers.java</file>
             <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/psms/mariquit/login.java</file>
             <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/transaction/alltransact.java</file>
+            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/crudpigs/addpigs.java</file>
+            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/cruduser/adduser.java</file>
+            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/config/Session.java</file>
+            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/user_interface/User_dashboard.java</file>
             <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/admin_interface/Admin_dashboard.java</file>
+            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/cruduser/profileinfo.java</file>
+            <file>file:/C:/Users/ISHIGAMI/Documents/netbeans/PSMS-MARIQUIT/src/psms/mariquit/editaccount.java</file>
         </group>
     </open-files>
 </project-private>

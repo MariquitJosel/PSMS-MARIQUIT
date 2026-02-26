@@ -87,6 +87,11 @@ public class User_dashboard extends javax.swing.JFrame {
         buybutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         buybutton.setText("BUY");
         buybutton.setOpaque(true);
+        buybutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buybuttonMouseClicked(evt);
+            }
+        });
         jPanel1.add(buybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 300, 60));
 
         profile.setBackground(new java.awt.Color(0, 153, 0));
@@ -178,6 +183,10 @@ public class User_dashboard extends javax.swing.JFrame {
     private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
                 System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_settingsMouseClicked
+
+    private void buybuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buybuttonMouseClicked
+       
+    }//GEN-LAST:event_buybuttonMouseClicked
 
     /**
      * @param args the command line arguments

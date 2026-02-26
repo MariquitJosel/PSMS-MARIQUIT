@@ -7,15 +7,20 @@ package cruduser;
 
 import admin_interface.Admin_dashboard;
 import config.Session;
+import config.dbconnect;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import psms.mariquit.editaccount;
 import psms.mariquit.login;
 import user_interface.User_dashboard;
 
@@ -88,11 +93,12 @@ public class profileinfo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         status = new javax.swing.JLabel();
         contact = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        address = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        profile = new javax.swing.JLabel();
+        edit = new javax.swing.JLabel();
+        back = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -177,11 +183,11 @@ public class profileinfo extends javax.swing.JFrame {
         contact.setOpaque(true);
         jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 850, 30));
 
-        jLabel11.setBackground(new java.awt.Color(102, 255, 102));
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("HOME ADDRESS:");
-        jLabel11.setOpaque(true);
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 850, 30));
+        address.setBackground(new java.awt.Color(102, 255, 102));
+        address.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        address.setText("HOME ADDRESS:");
+        address.setOpaque(true);
+        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 850, 30));
 
         email.setBackground(new java.awt.Color(153, 153, 153));
         email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -203,18 +209,31 @@ public class profileinfo extends javax.swing.JFrame {
         jLabel8.setOpaque(true);
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 40));
 
-        profile.setBackground(new java.awt.Color(0, 153, 0));
-        profile.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        profile.setForeground(new java.awt.Color(255, 255, 255));
-        profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        profile.setText("BACK");
-        profile.setOpaque(true);
-        profile.addMouseListener(new java.awt.event.MouseAdapter() {
+        edit.setBackground(new java.awt.Color(0, 153, 0));
+        edit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        edit.setForeground(new java.awt.Color(255, 255, 255));
+        edit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        edit.setText("EDIT");
+        edit.setOpaque(true);
+        edit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                profileMouseClicked(evt);
+                editMouseClicked(evt);
             }
         });
-        jPanel1.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 220, 40));
+        jPanel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 220, 40));
+
+        back.setBackground(new java.awt.Color(0, 153, 0));
+        back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        back.setForeground(new java.awt.Color(255, 255, 255));
+        back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        back.setText("BACK");
+        back.setOpaque(true);
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+        jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 220, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 590));
 
@@ -233,6 +252,7 @@ public class profileinfo extends javax.swing.JFrame {
         fullname.setText(""+sess.getFname());
         email.setText(""+sess.getEmail());
         usertype.setText(""+sess.getType());
+        address.setText(""+sess.getAddress());
         status.setText(""+sess.getStatus());
         contact.setText(""+sess.getContact());
         username.setText(""+sess.getUsername());
@@ -240,10 +260,16 @@ public class profileinfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowActivated
 
-    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-        profile.setOpaque(true);
-        profile.setBackground(Color.white);
-        profile.setForeground(new java.awt.Color(0,153,0));
+    private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
+         editaccount editacc = new editaccount();
+         editacc.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_editMouseClicked
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        edit.setOpaque(true);
+        edit.setBackground(Color.white);
+        edit.setForeground(new java.awt.Color(0,153,0));
         if(usertype.getText().equals("Admin")){
                 Admin_dashboard admdash = new Admin_dashboard();
                 admdash.setVisible(true);
@@ -254,7 +280,7 @@ public class profileinfo extends javax.swing.JFrame {
                 usrdash.setVisible(true);
                 this.dispose();            
             }
-    }//GEN-LAST:event_profileMouseClicked
+    }//GEN-LAST:event_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -292,11 +318,13 @@ public class profileinfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel address;
+    private javax.swing.JLabel back;
     private javax.swing.JLabel contact;
+    private javax.swing.JLabel edit;
     private javax.swing.JLabel email;
     private javax.swing.JLabel fullname;
     private javax.swing.JLabel image;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -305,7 +333,6 @@ public class profileinfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel profile;
     private javax.swing.JLabel status;
     private javax.swing.JLabel username;
     private javax.swing.JLabel usertype;

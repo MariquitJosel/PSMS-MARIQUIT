@@ -53,6 +53,7 @@ public class login extends javax.swing.JFrame {
                     sess.setEmail(resultSet.getString("email"));
                     sess.setContact(resultSet.getString("contact"));
                     sess.setUsername(resultSet.getString("username"));
+                    sess.setAddress(resultSet.getString("address"));
                     sess.setType(resultSet.getString("usertype"));
                     sess.setStatus(resultSet.getString("status"));
                     sess.setPassword(resultSet.getString("password"));
@@ -263,7 +264,7 @@ public class login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

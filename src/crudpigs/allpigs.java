@@ -10,6 +10,7 @@ import admin_interface.Admin_dashboard;
 import config.Session;
 import config.dbconnect;
 import java.awt.Color;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class allpigs extends javax.swing.JFrame {
         initComponents();
         displayData();
        pigstable.getTableHeader().setOpaque(false);
-       pigstable.getTableHeader().setBackground(new java.awt.Color(0,153,0));
+       pigstable.getTableHeader().setBackground(new java.awt.Color(0,204,153));
 
     }   
         public void displayData(){
@@ -52,6 +53,47 @@ public class allpigs extends javax.swing.JFrame {
 
     }
 
+    public void searchdata(){
+    try{
+        dbconnect dbc = new dbconnect();
+        
+        String keyword = search.getText().trim();
+
+        // If search box is empty, show all data
+        if(keyword.isEmpty()){
+            displayData();
+            return;
+        }
+
+        String query = "SELECT id, breed, price, status FROM pigs "
+                     + "WHERE id LIKE '%" + keyword + "%' "
+                     + "OR breed LIKE '%" + keyword + "%' "
+                     + "OR price LIKE '%" + keyword + "%' "
+                     + "OR status LIKE '%" + keyword + "%'";
+
+        ResultSet rs = dbc.getData(query);
+
+        // If no result found
+        if (!rs.isBeforeFirst()) {
+            JOptionPane.showMessageDialog(null, "No records found.");
+            displayData();
+            return;
+        }
+
+        pigstable.setModel(DbUtils.resultSetToTableModel(rs));
+
+        // Set column headers
+        TableColumnModel columnModel = pigstable.getColumnModel();
+        columnModel.getColumn(0).setHeaderValue("ID");
+        columnModel.getColumn(1).setHeaderValue("Breed");
+        columnModel.getColumn(2).setHeaderValue("Price");
+        columnModel.getColumn(3).setHeaderValue("Status");
+        pigstable.getTableHeader().repaint();
+
+    }catch(SQLException ex){
+        System.out.println("Errors: "+ex.getMessage());
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +116,8 @@ public class allpigs extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         pigstable = new javax.swing.JTable();
         id = new javax.swing.JLabel();
+        search = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -184,11 +228,25 @@ public class allpigs extends javax.swing.JFrame {
         pigstable.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(pigstable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 760, 570));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 760, 520));
 
         id.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         id.setText("id");
         jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, 90, 40));
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 380, 40));
+
+        jLabel2.setBackground(new java.awt.Color(0, 204, 153));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("SEARCH");
+        jLabel2.setOpaque(true);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 190, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 640));
 
@@ -340,6 +398,13 @@ int rowIndex = pigstable.getSelectedRow();
 
     }//GEN-LAST:event_deleteuserMouseClicked
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        if(search.getText().isEmpty()){
+        }
+        else{
+        searchdata();}
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -384,9 +449,11 @@ int rowIndex = pigstable.getSelectedRow();
     private javax.swing.JLabel edituser;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable pigstable;
+    private javax.swing.JTextField search;
     private javax.swing.JLabel uname;
     private javax.swing.JLabel usertype;
     private javax.swing.JLabel utype;
