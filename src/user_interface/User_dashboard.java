@@ -41,7 +41,6 @@ public class User_dashboard extends javax.swing.JFrame {
         settings = new javax.swing.JLabel();
         pigbutton1 = new javax.swing.JLabel();
         buybutton = new javax.swing.JLabel();
-        profile = new javax.swing.JLabel();
         uname = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -73,7 +72,7 @@ public class User_dashboard extends javax.swing.JFrame {
                 settingsMouseClicked(evt);
             }
         });
-        jPanel1.add(settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, 300, 60));
+        jPanel1.add(settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 300, 60));
 
         pigbutton1.setBackground(new java.awt.Color(0, 153, 0));
         pigbutton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -100,19 +99,6 @@ public class User_dashboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(buybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 300, 60));
-
-        profile.setBackground(new java.awt.Color(0, 153, 0));
-        profile.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        profile.setForeground(new java.awt.Color(255, 255, 255));
-        profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        profile.setText("PROFILE");
-        profile.setOpaque(true);
-        profile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                profileMouseClicked(evt);
-            }
-        });
-        jPanel1.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 300, 60));
 
         uname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         uname.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -146,7 +132,7 @@ public class User_dashboard extends javax.swing.JFrame {
                 settings1MouseClicked(evt);
             }
         });
-        jPanel1.add(settings1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 300, 60));
+        jPanel1.add(settings1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 300, 60));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pigimage.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 260, 180));
@@ -168,15 +154,6 @@ public class User_dashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-        profile.setOpaque(true);
-        profile.setBackground(Color.white);
-        profile.setForeground(new java.awt.Color(0,153,0));
-        profileinfo info = new profileinfo();
-        info.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_profileMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Session sess = Session.getInstance();
@@ -212,9 +189,10 @@ public class User_dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_pigbutton1MouseClicked
 
     private void settings1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings1MouseClicked
-editaccount editacc = new editaccount();
-         editacc.setVisible(true);
-         this.dispose();        // TODO add your handling code here:
+
+        profileinfo edit = new profileinfo();
+        edit.setVisible(true);
+        this.dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_settings1MouseClicked
 
     /**
@@ -264,7 +242,6 @@ editaccount editacc = new editaccount();
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel pigbutton1;
-    private javax.swing.JLabel profile;
     private javax.swing.JLabel settings;
     private javax.swing.JLabel settings1;
     private javax.swing.JLabel uname;

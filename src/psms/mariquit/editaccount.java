@@ -214,9 +214,11 @@ public class editaccount extends javax.swing.JFrame {
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 350, -1));
 
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Pending" }));
+        status.setEnabled(false);
         jPanel1.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 350, 40));
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
+        type.setEnabled(false);
         jPanel1.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 350, 40));
 
         id.setEnabled(false);
@@ -312,8 +314,8 @@ public class editaccount extends javax.swing.JFrame {
                                  + "status ='"+status.getSelectedItem()+"' WHERE userid ='"+id.getText()+"'");
          JOptionPane.showMessageDialog(null,"users account updated successfully.");
          
-     allusers all = new allusers();
-     all.setVisible(true);
+     profileinfo pro = new profileinfo();
+     pro.setVisible(true);
      this.dispose();}
 
     }//GEN-LAST:event_editMouseClicked
