@@ -82,8 +82,6 @@ public class profileinfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        image = new javax.swing.JLabel();
         fullname = new javax.swing.JLabel();
         usertype = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -113,30 +111,13 @@ public class profileinfo extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1140, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 150, 150));
-
         fullname.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         fullname.setText("FULL NAME");
-        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 770, 60));
+        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 770, 60));
 
         usertype.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         usertype.setText("usertype");
-        jPanel1.add(usertype, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 770, 30));
+        jPanel1.add(usertype, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 770, 30));
 
         jLabel2.setBackground(new java.awt.Color(0, 204, 0));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -219,6 +200,9 @@ public class profileinfo extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editMouseEntered(evt);
+            }
         });
         jPanel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 220, 40));
 
@@ -256,7 +240,7 @@ public class profileinfo extends javax.swing.JFrame {
         status.setText(""+sess.getStatus());
         contact.setText(""+sess.getContact());
         username.setText(""+sess.getUsername());
-        image.setIcon(ResizeImage(""+sess.getUimage(),null,image));
+        
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -281,6 +265,10 @@ public class profileinfo extends javax.swing.JFrame {
                 this.dispose();            
             }
     }//GEN-LAST:event_backMouseClicked
+
+    private void editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editMouseEntered
 
     /**
      * @param args the command line arguments
@@ -324,7 +312,6 @@ public class profileinfo extends javax.swing.JFrame {
     private javax.swing.JLabel edit;
     private javax.swing.JLabel email;
     private javax.swing.JLabel fullname;
-    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -332,7 +319,6 @@ public class profileinfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel status;
     private javax.swing.JLabel username;
     private javax.swing.JLabel usertype;

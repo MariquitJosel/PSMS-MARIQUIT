@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2026 at 09:18 AM
+-- Generation Time: Feb 27, 2026 at 12:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,7 +66,8 @@ CREATE TABLE `transacts` (
 --
 
 INSERT INTO `transacts` (`id`, `uid`, `pid`, `status`, `quantity`, `payment`, `total`) VALUES
-(2, 1, 1, 'Pending', 2, 'ewqeqw', 2466);
+(2, 1, 1, 'Pending', 2, 'ewqeqw', 2466),
+(3, 1, 2, 'Pending', 3, 'sadsada', 6969);
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,8 @@ INSERT INTO `users` (`userid`, `fullname`, `email`, `address`, `contact`, `usern
 (4, 'joo mariquit', 'mariwuit@gmail.com', NULL, '09343845122', 'mariquit', '3ioYhHfd4l4ANdwrz7xYnvifqoHGEYO/AxuqrgCaJ80=', NULL, 'User', 'Active'),
 (7, 'ddd', 'sfd@gmail.com', 'dsfa', '09998754321', 'sda', '3CPu+XdwfjccjgPJgoP7GoyWlVx5n2k+/q+EDu/586k=', NULL, 'Admin', 'Active'),
 (10, 'ohahah', 'ohahaha@gmail.com', NULL, '09876543211', 'ohaha', '+bOIaIuaxgCEh8FPiP1ayVr+WyA8l51gkDsCe9kW3NU=', NULL, 'Admin ', 'Active'),
-(12, 'admiun', 'admin@gmail.com', NULL, '09876543211', 'admin', 'JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=', NULL, 'Admin', 'Active');
+(12, 'admiun', 'admin@gmail.com', 'naga', '09876543211', 'admin', 'JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=', NULL, 'Admin', 'Active'),
+(13, 'user', 'user@gmail.com', 'minglanilla', '09873243512', 'user', '14XWNRGmRaJIdaEJ4O8dplYN2U0Um2c0lJqWVWyzRJ8=', NULL, 'Active', 'User');
 
 --
 -- Indexes for dumped tables
@@ -139,13 +141,13 @@ ALTER TABLE `pigs`
 -- AUTO_INCREMENT for table `transacts`
 --
 ALTER TABLE `transacts`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `userid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

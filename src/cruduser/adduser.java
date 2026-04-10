@@ -362,9 +362,9 @@ public class adduser extends javax.swing.JFrame {
         back.setForeground(new java.awt.Color(0,153,0));
 
         if(utype.getText().equals("Admin")){
-                Admin_dashboard admdash = new Admin_dashboard();
-                admdash.setVisible(true);
-               this.dispose();
+                 allusers all = new allusers();
+                all.setVisible(true);
+                this.dispose();
                
         }else if(utype.getText().equals("User")){
                 User_dashboard usrdash = new User_dashboard();

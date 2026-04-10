@@ -5,20 +5,15 @@
  */
 package transaction;
 
-import cruduser.*;
+
 import admin_interface.Admin_dashboard;
 import config.Session;
 import config.dbconnect;
-import config.passwordHasher;
 import java.awt.Color;
-import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.TableColumnModel;
-import net.proteanit.sql.DbUtils;
 import psms.mariquit.login;
 import user_interface.User_dashboard;
 
@@ -143,6 +138,8 @@ public void loadpigs(){
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         back1 = new javax.swing.JLabel();
+        prce = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -248,7 +245,7 @@ public void loadpigs(){
         sd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sd.setForeground(new java.awt.Color(0, 153, 0));
         sd.setText("total:");
-        jPanel1.add(sd, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, 350, -1));
+        jPanel1.add(sd, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 170, 20));
 
         jPanel1.add(pig, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 350, 40));
 
@@ -282,8 +279,14 @@ public void loadpigs(){
 
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Approved", "Canceled" }));
         jPanel1.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 350, 40));
-        jPanel1.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 350, 40));
+
+        total.setEnabled(false);
+        jPanel1.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 560, 180, 30));
+
+        pigid.setEnabled(false);
         jPanel1.add(pigid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 180, 30));
+
+        cusid.setEnabled(false);
         jPanel1.add(cusid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 180, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -300,7 +303,7 @@ public void loadpigs(){
         back1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back1.setForeground(new java.awt.Color(255, 255, 255));
         back1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        back1.setText("REVIEW DETAILS");
+        back1.setText("CALCULATE DETAILS");
         back1.setOpaque(true);
         back1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -308,6 +311,19 @@ public void loadpigs(){
             }
         });
         jPanel1.add(back1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 260, 50));
+
+        prce.setEnabled(false);
+        prce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(prce, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 350, 40));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel16.setText("Price:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, 350, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 640));
 
@@ -320,8 +336,14 @@ public void loadpigs(){
               dbconnect dbc = new dbconnect();
         int qty = Integer.parseInt(quantity.getText());
         int ttl = price * qty;
-        
-        int db = dbc.insertData("INSERT INTO transacts(uid, pid,status,quantity, payment,total) VALUES ('"
+        if(uid == 0 || pid == 0){
+        JOptionPane.showMessageDialog(null, "select customer or pigs first");
+        }
+        else{
+        cusid.setText(String.valueOf(uid));
+        pigid.setText(String.valueOf(pid));
+        total.setText(String.valueOf(ttl));
+       dbc.insertData("INSERT INTO transacts(uid, pid,status,quantity, payment,total) VALUES ('"
                  + uid + "', '"
                  + pid + "', '"
                  + status.getSelectedItem()+ "', '"
@@ -330,25 +352,15 @@ public void loadpigs(){
                  + ttl +"')");
          JOptionPane.showMessageDialog(null,"transaction created successfully.");
 
-          }
+        }           
+        }
         
     }//GEN-LAST:event_addMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        back.setOpaque(true);
-        back.setBackground(Color.white);
-        back.setForeground(new java.awt.Color(0,153,0));
-
-        if(utype.getText().equals("Admin")){
-                Admin_dashboard admdash = new Admin_dashboard();
-                admdash.setVisible(true);
-               this.dispose();
-               
-        }else if(utype.getText().equals("User")){
-                User_dashboard usrdash = new User_dashboard();
-                usrdash.setVisible(true);
-                this.dispose();            
-            }
+        alltransact all = new alltransact();
+        all.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -375,7 +387,26 @@ public void loadpigs(){
     }//GEN-LAST:event_idActionPerformed
 
     private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
- 
+       if (getids()){
+              dbconnect dbc = new dbconnect();
+        int qty = Integer.parseInt(quantity.getText());
+        int ttl = price * qty;
+        if(uid == 0 || pid == 0){
+        JOptionPane.showMessageDialog(null, "select customer or pigs first");
+        }
+        else{
+        cusid.setText(String.valueOf(uid));
+        pigid.setText(String.valueOf(pid));
+        total.setText(String.valueOf(ttl));
+       dbc.insertData("UPDATE transacts SET uid ='"+cusid.getText()+"', pid ='"+pigid.getText()+"', status ='"+status.getSelectedItem()+"',"
+               + "quantity ='"+quantity.getText()+"',payment ='"+payment.getText()+"', total ='"+ttl+"' WHERE id ='"+id.getText()+"'");
+         JOptionPane.showMessageDialog(null,"transaction updated successfully.");
+        alltransact all = new alltransact();
+        all.setVisible(true);
+        this.dispose();
+         
+        }           
+        }  
 
     }//GEN-LAST:event_editMouseClicked
 
@@ -396,6 +427,7 @@ public void loadpigs(){
         }else{
         cusid.setText(String.valueOf(uid));
         pigid.setText(String.valueOf(pid));
+        prce.setText(String.valueOf(price));
         int qty = Integer.parseInt(quantity.getText());
         int ttl = price * qty;
         total.setText(String.valueOf(ttl));
@@ -404,6 +436,10 @@ public void loadpigs(){
           }
         
     }//GEN-LAST:event_back1MouseClicked
+
+    private void prceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,7 +495,7 @@ public void loadpigs(){
     public javax.swing.JLabel add;
     private javax.swing.JLabel back;
     private javax.swing.JLabel back1;
-    private javax.swing.JTextField cusid;
+    public javax.swing.JTextField cusid;
     public javax.swing.JComboBox<String> customers;
     public javax.swing.JLabel delete;
     public javax.swing.JLabel edit;
@@ -469,13 +505,15 @@ public void loadpigs(){
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField payment;
     public javax.swing.JComboBox<String> pig;
-    private javax.swing.JTextField pigid;
+    public javax.swing.JTextField pigid;
+    public javax.swing.JTextField prce;
     public javax.swing.JTextField quantity;
     private javax.swing.JLabel sd;
     public javax.swing.JComboBox<String> status;

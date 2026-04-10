@@ -74,24 +74,26 @@ public class pigview extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        image = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        price = new javax.swing.JLabel();
-        status = new javax.swing.JLabel();
-        weight = new javax.swing.JLabel();
-        age = new javax.swing.JLabel();
-        breed = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        name = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        ts = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        breed = new javax.swing.JLabel();
+        cs3 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        price = new javax.swing.JLabel();
+        cs4 = new javax.swing.JLabel();
+        age = new javax.swing.JLabel();
+        cs5 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        status = new javax.swing.JLabel();
+        cs7 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        weight = new javax.swing.JLabel();
+        cs6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -106,90 +108,10 @@ public class pigview extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1140, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 150, 150));
-
-        jLabel2.setBackground(new java.awt.Color(0, 204, 153));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText(" WEIGHT:");
-        jLabel2.setOpaque(true);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 200, 30));
-
-        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("  STATUS:");
-        jLabel3.setOpaque(true);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 200, 30));
-
-        jLabel4.setBackground(new java.awt.Color(0, 204, 153));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText(" BREED:");
-        jLabel4.setOpaque(true);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 200, 30));
-
-        jLabel5.setBackground(new java.awt.Color(0, 204, 153));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("  PRICE");
-        jLabel5.setOpaque(true);
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 200, 30));
-
-        jLabel6.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("  AGE:");
-        jLabel6.setOpaque(true);
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 200, 30));
-
-        price.setBackground(new java.awt.Color(102, 255, 204));
-        price.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        price.setText("PRICE");
-        price.setOpaque(true);
-        jPanel1.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 850, 30));
-
-        status.setBackground(new java.awt.Color(153, 153, 153));
-        status.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        status.setText("STATUS");
-        status.setOpaque(true);
-        jPanel1.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 850, 30));
-
-        weight.setBackground(new java.awt.Color(102, 255, 204));
-        weight.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        weight.setText("WEIGHT");
-        weight.setOpaque(true);
-        jPanel1.add(weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 850, 30));
-
-        age.setBackground(new java.awt.Color(153, 153, 153));
-        age.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        age.setText("AGE");
-        age.setOpaque(true);
-        jPanel1.add(age, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 850, 30));
-
-        breed.setBackground(new java.awt.Color(102, 255, 204));
-        breed.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        breed.setText("BREED");
-        breed.setOpaque(true);
-        jPanel1.add(breed, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 850, 30));
-
         jLabel8.setBackground(new java.awt.Color(0, 204, 153));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("  USER INFORMATION");
+        jLabel8.setText("  PIG INFORMATION");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel8.setOpaque(true);
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 40));
@@ -207,30 +129,88 @@ public class pigview extends javax.swing.JFrame {
         });
         jPanel1.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 220, 40));
 
-        jLabel7.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("  NAME:");
-        jLabel7.setOpaque(true);
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 200, 30));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        name.setBackground(new java.awt.Color(153, 153, 153));
-        name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        name.setText("NAME");
-        name.setOpaque(true);
-        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 680, 30));
+        ts.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ts.setText("Pig ID:");
+        jPanel5.add(ts, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 280, 30));
 
-        id.setBackground(new java.awt.Color(102, 255, 204));
-        id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        id.setText("ID");
-        id.setOpaque(true);
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 680, 30));
+        id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        id.setText("id");
+        jPanel5.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 270, 30));
 
-        jLabel10.setBackground(new java.awt.Color(0, 204, 153));
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("  ID:");
-        jLabel10.setOpaque(true);
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 200, 30));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 1080, 60));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        breed.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        breed.setText("BREED");
+        jPanel6.add(breed, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 330, 40));
+
+        cs3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs3.setText("Pig breed:");
+        jPanel6.add(cs3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 30));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 340, 90));
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        price.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        price.setText("PRICE");
+        jPanel7.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 290, 40));
+
+        cs4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs4.setText("Pig price:");
+        jPanel7.add(cs4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 30));
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 330, 90));
+
+        age.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        age.setText("AGE");
+        jPanel1.add(age, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 340, 40));
+
+        cs5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs5.setText("Age:");
+        jPanel1.add(cs5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 320, 30));
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 200, 370, 90));
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        status.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        status.setText("STATUS");
+        jPanel10.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 290, 40));
+
+        cs7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs7.setText("Status:");
+        jPanel10.add(cs7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 30));
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 510, 90));
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        weight.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        weight.setText("WEIGHT");
+        jPanel9.add(weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 330, 40));
+
+        cs6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs6.setText("Total:");
+        jPanel9.add(cs6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 30));
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 540, 90));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 590));
 
@@ -298,22 +278,24 @@ public class pigview extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel age;
     public javax.swing.JLabel breed;
+    public javax.swing.JLabel cs3;
+    public javax.swing.JLabel cs4;
+    public javax.swing.JLabel cs5;
+    public javax.swing.JLabel cs6;
+    public javax.swing.JLabel cs7;
     public javax.swing.JLabel id;
-    private javax.swing.JLabel image;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    public javax.swing.JLabel name;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     public javax.swing.JLabel price;
     private javax.swing.JLabel profile;
     public javax.swing.JLabel status;
+    public javax.swing.JLabel ts;
     public javax.swing.JLabel weight;
     // End of variables declaration//GEN-END:variables
 }

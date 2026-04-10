@@ -9,12 +9,14 @@ package transaction;
 import admin_interface.Admin_dashboard;
 import config.Session;
 import config.dbconnect;
+import cruduser.adduser;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 import net.proteanit.sql.DbUtils;
 import psms.mariquit.login;
@@ -323,7 +325,40 @@ public class alltransact extends javax.swing.JFrame {
     }//GEN-LAST:event_backMouseClicked
 
     private void detailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsMouseClicked
-  
+        int rowIndex = transacttable.getSelectedRow();
+
+        if (rowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select an item!");
+        } else {
+            try {
+                dbconnect dbc = new dbconnect();
+                TableModel tbl = transacttable.getModel();
+                ResultSet rs = dbc.getData("SELECT transacts.id, users.fullname, users.address, users.contact, transacts.uid, transacts.pid, " +
+                "pigs.breed, pigs.price, transacts.total,transacts.quantity,  transacts.payment, transacts.status FROM transacts " +
+                "INNER JOIN users ON transacts.uid = users.userid " +
+                "INNER JOIN pigs ON transacts.pid = pigs.id WHERE transacts.id ='" + tbl.getValueAt(rowIndex, 0) + "'");
+
+                if (rs.next()) {
+
+                    viewtransact add = new viewtransact();
+                    add.id.setText(""+rs.getInt("id"));
+                    add.fullname.setText(""+rs.getString("fullname"));
+                    add.breed.setText(""+rs.getString("breed"));
+                    add.quantity.setText(""+rs.getString("quantity"));
+                    add.status.setText(""+rs.getString("status"));
+                    add.address.setText(""+rs.getString("address"));
+                    add.total.setText(""+rs.getString("total"));
+                    add.contact.setText(""+rs.getString("contact"));
+                    add.price.setText(""+rs.getString("price"));
+
+                   add.setVisible(true);
+                   this.dispose();
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("" + ex);
+            }
+        }    
     }//GEN-LAST:event_detailsMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -341,7 +376,42 @@ public class alltransact extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void edituserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edituserMouseClicked
-       // TODO add your handling code here:
+    int rowIndex = transacttable.getSelectedRow();
+
+        if (rowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select an item!");
+        } else {
+            try {
+                dbconnect dbc = new dbconnect();
+                TableModel tbl = transacttable.getModel();
+                ResultSet rs = dbc.getData("SELECT transacts.id, users.fullname, transacts.uid, transacts.pid, " +
+                "pigs.breed, pigs.price, transacts.total,transacts.quantity,  transacts.payment, transacts.status FROM transacts " +
+                "INNER JOIN users ON transacts.uid = users.userid " +
+                "INNER JOIN pigs ON transacts.pid = pigs.id WHERE transacts.id ='" + tbl.getValueAt(rowIndex, 0) + "'");
+
+                if (rs.next()) {
+
+                    addtransact add = new addtransact();
+                    add.id.setText(""+rs.getInt("id"));
+                    add.customers.setSelectedItem(""+rs.getString("fullname"));
+                    add.pig.setSelectedItem(""+rs.getString("breed"));
+                    add.quantity.setText(""+rs.getString("quantity"));
+                    add.payment.setText(""+rs.getString("payment"));
+                    add.status.setSelectedItem(""+rs.getString("status"));
+                    add.cusid.setText(""+rs.getString("uid"));
+                    add.total.setText(""+rs.getString("total"));
+                    add.pigid.setText(""+rs.getString("pid"));
+                    add.add.setEnabled(false);
+                    add.edit.setEnabled(true);
+                    add.delete.setEnabled(false);
+                   add.setVisible(true);
+                   this.dispose();
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("" + ex);
+            }
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_edituserMouseClicked
 
     private void deleteuserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteuserMouseClicked

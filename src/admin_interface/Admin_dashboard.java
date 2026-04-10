@@ -11,6 +11,7 @@ import cruduser.allusers;
 import cruduser.profileinfo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import psms.mariquit.editaccount;
 import psms.mariquit.login;
 import transaction.alltransact;
 
@@ -154,6 +155,11 @@ public class Admin_dashboard extends javax.swing.JFrame {
         settings1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         settings1.setText("SETTINGS");
         settings1.setOpaque(true);
+        settings1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings1MouseClicked(evt);
+            }
+        });
         jPanel1.add(settings1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 300, 60));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pigimage.png"))); // NOI18N
@@ -224,6 +230,12 @@ public class Admin_dashboard extends javax.swing.JFrame {
         all.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buybuttonMouseClicked
+
+    private void settings1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings1MouseClicked
+editaccount editacc = new editaccount();
+         editacc.setVisible(true);
+         this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_settings1MouseClicked
 
     /**
      * @param args the command line arguments

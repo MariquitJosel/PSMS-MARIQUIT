@@ -77,8 +77,6 @@ public class userview extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        image = new javax.swing.JLabel();
         fullname = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -109,30 +107,13 @@ public class userview extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1140, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 150, 150));
-
         fullname.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         fullname.setText("FULL NAME");
-        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 770, 60));
+        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 770, 60));
 
         id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         id.setText("id");
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 770, 30));
+        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 770, 30));
 
         jLabel2.setBackground(new java.awt.Color(0, 204, 0));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -297,7 +278,6 @@ public class userview extends javax.swing.JFrame {
     public javax.swing.JLabel email;
     public javax.swing.JLabel fullname;
     public javax.swing.JLabel id;
-    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -306,7 +286,6 @@ public class userview extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel profile;
     public javax.swing.JLabel status;
     public javax.swing.JLabel username;

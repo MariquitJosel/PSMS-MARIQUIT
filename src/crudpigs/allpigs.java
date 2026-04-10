@@ -106,7 +106,7 @@ public class allpigs extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         addpig = new javax.swing.JLabel();
         edituser = new javax.swing.JLabel();
-        deleteuser = new javax.swing.JLabel();
+        deletepig = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
         uname = new javax.swing.JLabel();
         utype = new javax.swing.JLabel();
@@ -156,18 +156,18 @@ public class allpigs extends javax.swing.JFrame {
         });
         jPanel1.add(edituser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 300, 60));
 
-        deleteuser.setBackground(new java.awt.Color(0, 204, 153));
-        deleteuser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        deleteuser.setForeground(new java.awt.Color(255, 255, 255));
-        deleteuser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deleteuser.setText("DELETE PIG");
-        deleteuser.setOpaque(true);
-        deleteuser.addMouseListener(new java.awt.event.MouseAdapter() {
+        deletepig.setBackground(new java.awt.Color(0, 204, 153));
+        deletepig.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        deletepig.setForeground(new java.awt.Color(255, 255, 255));
+        deletepig.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deletepig.setText("DELETE PIG");
+        deletepig.setOpaque(true);
+        deletepig.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteuserMouseClicked(evt);
+                deletepigMouseClicked(evt);
             }
         });
-        jPanel1.add(deleteuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 300, 60));
+        jPanel1.add(deletepig, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 300, 60));
 
         back.setBackground(new java.awt.Color(0, 204, 153));
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -365,7 +365,7 @@ int rowIndex = pigstable.getSelectedRow();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_edituserMouseClicked
 
-    private void deleteuserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteuserMouseClicked
+    private void deletepigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletepigMouseClicked
       int rowIndex = pigstable.getSelectedRow();
 
         if (rowIndex < 0) {
@@ -396,7 +396,7 @@ int rowIndex = pigstable.getSelectedRow();
             }
         }   
 
-    }//GEN-LAST:event_deleteuserMouseClicked
+    }//GEN-LAST:event_deletepigMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         if(search.getText().isEmpty()){
@@ -444,7 +444,7 @@ int rowIndex = pigstable.getSelectedRow();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addpig;
     private javax.swing.JLabel back;
-    private javax.swing.JLabel deleteuser;
+    public javax.swing.JLabel deletepig;
     private javax.swing.JLabel details;
     private javax.swing.JLabel edituser;
     private javax.swing.JLabel id;

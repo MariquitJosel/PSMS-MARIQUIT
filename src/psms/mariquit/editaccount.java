@@ -16,10 +16,7 @@ import javax.swing.JOptionPane;
 import psms.mariquit.login;
 import user_interface.User_dashboard;
 
-/**
- *
- * @author Teves
- */
+
 public class editaccount extends javax.swing.JFrame {
 
     /**

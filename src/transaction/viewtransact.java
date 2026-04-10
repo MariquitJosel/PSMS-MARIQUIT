@@ -78,24 +78,35 @@ public class viewtransact extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        image = new javax.swing.JLabel();
         fullname = new javax.swing.JLabel();
-        id = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        status = new javax.swing.JLabel();
-        contact = new javax.swing.JLabel();
-        address = new javax.swing.JLabel();
-        email = new javax.swing.JLabel();
-        username = new javax.swing.JLabel();
+        cs = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        usertype = new javax.swing.JLabel();
+        address = new javax.swing.JLabel();
+        cs1 = new javax.swing.JLabel();
+        contact = new javax.swing.JLabel();
+        cs2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        ts = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        breed = new javax.swing.JLabel();
+        cs3 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        price = new javax.swing.JLabel();
+        cs4 = new javax.swing.JLabel();
+        quantity = new javax.swing.JLabel();
+        cs5 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        status = new javax.swing.JLabel();
+        cs7 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        total = new javax.swing.JLabel();
+        cs6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -110,103 +121,23 @@ public class viewtransact extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1140, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 150, 150));
-
-        fullname.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        fullname.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         fullname.setText("FULL NAME");
-        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 770, 60));
+        jPanel1.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 330, 40));
 
-        id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        id.setText("id");
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 770, 30));
+        cs.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs.setText("Customer name:");
+        jPanel1.add(cs, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 330, 30));
 
-        jLabel2.setBackground(new java.awt.Color(0, 204, 0));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText(" HOME ADDRESS:");
-        jLabel2.setOpaque(true);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 200, 30));
-
-        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("CONTACT NUMBER:");
-        jLabel3.setOpaque(true);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 200, 30));
-
-        jLabel4.setBackground(new java.awt.Color(0, 204, 0));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText(" USERNAME:");
-        jLabel4.setOpaque(true);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 200, 30));
-
-        jLabel5.setBackground(new java.awt.Color(0, 204, 0));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText(" USER STATUS:");
-        jLabel5.setOpaque(true);
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 200, 30));
-
-        jLabel6.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("EMAIL ADDRESS:");
-        jLabel6.setOpaque(true);
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 200, 30));
-
-        status.setBackground(new java.awt.Color(102, 255, 102));
-        status.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        status.setText("USER STATUS:");
-        status.setOpaque(true);
-        jPanel1.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 850, 30));
-
-        contact.setBackground(new java.awt.Color(153, 153, 153));
-        contact.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        contact.setText("CONTACT NUMBER:");
-        contact.setOpaque(true);
-        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 850, 30));
-
-        address.setBackground(new java.awt.Color(102, 255, 102));
-        address.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        address.setText("HOME ADDRESS:");
-        address.setOpaque(true);
-        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 850, 30));
-
-        email.setBackground(new java.awt.Color(153, 153, 153));
-        email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        email.setText("EMAIL ADDRESS:");
-        email.setOpaque(true);
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 850, 30));
-
-        username.setBackground(new java.awt.Color(102, 255, 102));
-        username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        username.setText("USERNAME:");
-        username.setOpaque(true);
-        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 850, 30));
-
-        jLabel8.setBackground(new java.awt.Color(0, 153, 0));
+        jLabel8.setBackground(new java.awt.Color(51, 204, 0));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("  USER INFORMATION");
+        jLabel8.setText("  TRANSACT INFORMATION");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel8.setOpaque(true);
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 40));
 
-        profile.setBackground(new java.awt.Color(0, 153, 0));
+        profile.setBackground(new java.awt.Color(51, 204, 0));
         profile.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -219,17 +150,119 @@ public class viewtransact extends javax.swing.JFrame {
         });
         jPanel1.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 220, 40));
 
-        jLabel9.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("USER TYPE:");
-        jLabel9.setOpaque(true);
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 200, 30));
+        address.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        address.setText("ADDRESS");
+        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 330, 40));
 
-        usertype.setBackground(new java.awt.Color(153, 153, 153));
-        usertype.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        usertype.setText("USER TYPE");
-        usertype.setOpaque(true);
-        jPanel1.add(usertype, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 530, 850, 30));
+        cs1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs1.setText("Customer address:");
+        jPanel1.add(cs1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 340, 30));
+
+        contact.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        contact.setText("CONTACT");
+        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 340, 40));
+
+        cs2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs2.setText("Customer contact:");
+        jPanel1.add(cs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, 320, 30));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ts.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ts.setText("transact ID:");
+        jPanel5.add(ts, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 280, 30));
+
+        id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        id.setText("id");
+        jPanel5.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 270, 30));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 1080, 60));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 330, 90));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, 370, 90));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 340, 90));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        breed.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        breed.setText("BREED");
+        jPanel6.add(breed, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 330, 40));
+
+        cs3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs3.setText("Pig breed:");
+        jPanel6.add(cs3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 30));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 340, 90));
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        price.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        price.setText("PRICE");
+        jPanel7.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 290, 40));
+
+        cs4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs4.setText("Pig price:");
+        jPanel7.add(cs4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 30));
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 330, 90));
+
+        quantity.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        quantity.setText("QUANTITY");
+        jPanel1.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, 340, 40));
+
+        cs5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs5.setText("Quantity");
+        jPanel1.add(cs5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, 320, 30));
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 370, 90));
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        status.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        status.setText("STATUS");
+        jPanel10.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 290, 40));
+
+        cs7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs7.setText("Status:");
+        jPanel10.add(cs7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 290, 30));
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 520, 90));
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        total.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        total.setText("TOTAL");
+        jPanel9.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 330, 40));
+
+        cs6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cs6.setText("Total:");
+        jPanel9.add(cs6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 30));
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 540, 90));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 590));
 
@@ -300,23 +333,34 @@ public class viewtransact extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel address;
+    public javax.swing.JLabel breed;
     public javax.swing.JLabel contact;
-    public javax.swing.JLabel email;
+    public javax.swing.JLabel cs;
+    public javax.swing.JLabel cs1;
+    public javax.swing.JLabel cs2;
+    public javax.swing.JLabel cs3;
+    public javax.swing.JLabel cs4;
+    public javax.swing.JLabel cs5;
+    public javax.swing.JLabel cs6;
+    public javax.swing.JLabel cs7;
     public javax.swing.JLabel fullname;
     public javax.swing.JLabel id;
-    private javax.swing.JLabel image;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    public javax.swing.JLabel price;
     private javax.swing.JLabel profile;
+    public javax.swing.JLabel quantity;
     public javax.swing.JLabel status;
-    public javax.swing.JLabel username;
-    public javax.swing.JLabel usertype;
+    public javax.swing.JLabel total;
+    public javax.swing.JLabel ts;
     // End of variables declaration//GEN-END:variables
 }
