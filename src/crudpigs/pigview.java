@@ -207,7 +207,7 @@ public class pigview extends javax.swing.JFrame {
         jPanel9.add(weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 330, 40));
 
         cs6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        cs6.setText("Total:");
+        cs6.setText("Weight");
         jPanel9.add(cs6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 30));
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 540, 90));

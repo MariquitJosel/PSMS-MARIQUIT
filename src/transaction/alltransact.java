@@ -9,7 +9,6 @@ package transaction;
 import admin_interface.Admin_dashboard;
 import config.Session;
 import config.dbconnect;
-import cruduser.adduser;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,49 +32,87 @@ public class alltransact extends javax.swing.JFrame {
        transacttable.getTableHeader().setForeground(Color.white);
 
     }   
-       public void displayData(){
-        try{
-            dbconnect dbc = new dbconnect();
-            
-            try (ResultSet rs = dbc.getData(
-                "SELECT transacts.id, users.fullname, users.address, " +
-                "pigs.breed, pigs.price, transacts.total, transacts.status FROM transacts " +
-                "INNER JOIN users ON transacts.uid = users.userid " +
-                "INNER JOIN pigs ON transacts.pid = pigs.id "  );) 
-            {
-                transacttable.setModel(DbUtils.resultSetToTableModel(rs));
-                transacttable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-                TableColumnModel columnModel = transacttable.getColumnModel();
-                
-                columnModel.getColumn(0).setHeaderValue("ID");
-                columnModel.getColumn(1).setHeaderValue("Fullname");
-                columnModel.getColumn(2).setHeaderValue("address");
-                columnModel.getColumn(3).setHeaderValue("pig breed");
-                columnModel.getColumn(4).setHeaderValue("price");
-                columnModel.getColumn(5).setHeaderValue("total");
-                columnModel.getColumn(6).setHeaderValue("status");
-                transacttable.getTableHeader().repaint();
-                columnModel.getColumn(0).setPreferredWidth(100);
-                columnModel.getColumn(1).setPreferredWidth(110);
-                columnModel.getColumn(2).setPreferredWidth(110);
-                columnModel.getColumn(3).setPreferredWidth(110);
-                columnModel.getColumn(4).setPreferredWidth(110);
-                columnModel.getColumn(5).setPreferredWidth(110);
-                columnModel.getColumn(6).setPreferredWidth(110);
- 
-    
-             
-            }
-        }catch(SQLException ex){
-            System.out.println("Errors: "+ex.getMessage());
+      public void displayData(){
+    try{
+        dbconnect dbc = new dbconnect();
+        Session sess = Session.getInstance();
 
+        String query;
+
+        // CONDITION HERE
+        if(sess.getType().equalsIgnoreCase("admin")){
+            // Admin can see ALL transactions
+            query = "SELECT transacts.id, users.fullname, users.address, " +
+                    "pigs.breed, pigs.price, transacts.total, transacts.status FROM transacts " +
+                    "INNER JOIN users ON transacts.uid = users.userid " +
+                    "INNER JOIN pigs ON transacts.pid = pigs.id";
+        } else {
+            // User can ONLY see their own transactions
+            query = "SELECT transacts.id, users.fullname, users.address, " +
+                    "pigs.breed, pigs.price, transacts.total, transacts.status FROM transacts " +
+                    "INNER JOIN users ON transacts.uid = users.userid " +
+                    "INNER JOIN pigs ON transacts.pid = pigs.id " +
+                    "WHERE transacts.uid = " + sess.getId();
+            
+        }
+        
+
+        try (ResultSet rs = dbc.getData(query)) {
+            
+            if (!rs.isBeforeFirst()) {
+            String message;
+
+            if(sess.getType().equalsIgnoreCase("user")){
+                message = "You have no transactions yet";
+            } else {
+                message = "No transactions found";
+            }
+
+            // Create empty table with message
+            javax.swing.table.DefaultTableModel model =
+                new javax.swing.table.DefaultTableModel(
+                    new Object[][]{{message}},
+                    new String[]{"Message"}
+                );
+
+            transacttable.setModel(model);
+            return;
+        }
+            transacttable.setModel(DbUtils.resultSetToTableModel(rs));
+            transacttable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            TableColumnModel columnModel = transacttable.getColumnModel();
+            
+
+            columnModel.getColumn(0).setHeaderValue("ID");
+            columnModel.getColumn(1).setHeaderValue("Fullname");
+            columnModel.getColumn(2).setHeaderValue("Address");
+            columnModel.getColumn(3).setHeaderValue("Pig Breed");
+            columnModel.getColumn(4).setHeaderValue("Price");
+            columnModel.getColumn(5).setHeaderValue("Total");
+            columnModel.getColumn(6).setHeaderValue("Status");
+
+            transacttable.getTableHeader().repaint();
+
+            columnModel.getColumn(0).setPreferredWidth(100);
+            columnModel.getColumn(1).setPreferredWidth(110);
+            columnModel.getColumn(2).setPreferredWidth(110);
+            columnModel.getColumn(3).setPreferredWidth(110);
+            columnModel.getColumn(4).setPreferredWidth(110);
+            columnModel.getColumn(5).setPreferredWidth(110);
+            columnModel.getColumn(6).setPreferredWidth(110);
         }
 
+    }catch(SQLException ex){
+        System.out.println("Errors: "+ex.getMessage());
     }
+}
+      
+      
        public void searchdata(){
     try{
         dbconnect dbc = new dbconnect();
-        
+        Session sess = Session.getInstance();
+
         String keyword = search.getText().trim();
 
         if(keyword.isEmpty()){
@@ -83,28 +120,55 @@ public class alltransact extends javax.swing.JFrame {
             return;
         }
 
-        String query = 
+        String baseQuery = 
             "SELECT transacts.id, users.fullname, users.address, " +
             "pigs.breed, pigs.price, transacts.total, transacts.status " +
             "FROM transacts " +
             "INNER JOIN users ON transacts.uid = users.userid " +
-            "INNER JOIN pigs ON transacts.pid = pigs.id " +
-            "WHERE transacts.id LIKE '%" + keyword + "%' " +
+            "INNER JOIN pigs ON transacts.pid = pigs.id ";
+
+        String condition = 
+            "WHERE (transacts.id LIKE '%" + keyword + "%' " +
             "OR users.fullname LIKE '%" + keyword + "%' " +
             "OR users.address LIKE '%" + keyword + "%' " +
             "OR pigs.breed LIKE '%" + keyword + "%' " +
             "OR pigs.price LIKE '%" + keyword + "%' " +
             "OR transacts.total LIKE '%" + keyword + "%' " +
-            "OR transacts.status LIKE '%" + keyword + "%'";
+            "OR transacts.status LIKE '%" + keyword + "%')";
+
+        String query;
+
+        if(sess.getType().equalsIgnoreCase("admin")){
+            query = baseQuery + condition;
+        } else {
+            query = baseQuery + condition + 
+                    " AND transacts.uid = " + sess.getId();
+        }
 
         ResultSet rs = dbc.getData(query);
 
+        // 🔥 SHOW MESSAGE IN TABLE INSTEAD
         if (!rs.isBeforeFirst()) {
-            JOptionPane.showMessageDialog(null, "No transactions found.");
-            displayData();
+            String message;
+
+            if(sess.getType().equalsIgnoreCase("user")){
+                message = "You have no transactions yet";
+            } else {
+                message = "No transactions found";
+            }
+
+            // Create empty table with message
+            javax.swing.table.DefaultTableModel model =
+                new javax.swing.table.DefaultTableModel(
+                    new Object[][]{{message}},
+                    new String[]{"Message"}
+                );
+
+            transacttable.setModel(model);
             return;
         }
 
+        // Normal display
         transacttable.setModel(DbUtils.resultSetToTableModel(rs));
         transacttable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -131,7 +195,6 @@ public class alltransact extends javax.swing.JFrame {
         System.out.println("Errors: "+ex.getMessage());
     }
 }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,7 +216,6 @@ public class alltransact extends javax.swing.JFrame {
         details = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transacttable = new javax.swing.JTable();
-        id = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
 
@@ -232,7 +294,7 @@ public class alltransact extends javax.swing.JFrame {
         usertype.setBackground(new java.awt.Color(51, 204, 0));
         usertype.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         usertype.setForeground(new java.awt.Color(255, 255, 255));
-        usertype.setText("MANAGE USERS");
+        usertype.setText("MANAGE TRANSACTION");
         usertype.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         usertype.setOpaque(true);
         jPanel1.add(usertype, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 40));
@@ -268,10 +330,6 @@ public class alltransact extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 760, 520));
 
-        id.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        id.setText("id");
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, 90, 40));
-
         jLabel2.setBackground(new java.awt.Color(51, 204, 0));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -293,18 +351,17 @@ public class alltransact extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adduserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adduserMouseClicked
-        adduser.setOpaque(true);
-        adduser.setBackground(Color.white);
-        adduser.setForeground(new java.awt.Color(0,153,0));
-        back.setOpaque(true);
-        back.setForeground(Color.white);
-        back.setBackground(new java.awt.Color(0,153,0));
-
-        addtransact add = new addtransact();
-        add.setVisible(true);
-        add.delete.setEnabled(false);
-
-        this.dispose();
+         
+        if(utype.getText().equals("Admin")){
+                addtransact admdash = new addtransact();
+                admdash.setVisible(true);
+               this.dispose();
+               
+        }else if(utype.getText().equals("User")){
+                usertransact usrdash = new usertransact();
+                usrdash.setVisible(true);
+                this.dispose();            
+            }
     }//GEN-LAST:event_adduserMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
@@ -376,7 +433,8 @@ public class alltransact extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void edituserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edituserMouseClicked
-    int rowIndex = transacttable.getSelectedRow();
+       
+        int rowIndex = transacttable.getSelectedRow();
 
         if (rowIndex < 0) {
             JOptionPane.showMessageDialog(null, "Please select an item!");
@@ -390,7 +448,7 @@ public class alltransact extends javax.swing.JFrame {
                 "INNER JOIN pigs ON transacts.pid = pigs.id WHERE transacts.id ='" + tbl.getValueAt(rowIndex, 0) + "'");
 
                 if (rs.next()) {
-
+                if(utype.getText().equals("Admin")){
                     addtransact add = new addtransact();
                     add.id.setText(""+rs.getInt("id"));
                     add.customers.setSelectedItem(""+rs.getString("fullname"));
@@ -406,6 +464,24 @@ public class alltransact extends javax.swing.JFrame {
                     add.delete.setEnabled(false);
                    add.setVisible(true);
                    this.dispose();
+                   
+                }else if(utype.getText().equals("User")){
+                 usertransact add = new usertransact();
+                    add.id.setText(""+rs.getInt("id"));
+                    add.pig.setSelectedItem(""+rs.getString("breed"));
+                    add.quantity.setText(""+rs.getString("quantity"));
+                    add.payment.setText(""+rs.getString("payment"));
+                    add.status.setSelectedItem(""+rs.getString("status"));
+                    add.total.setText(""+rs.getString("total"));
+                    add.pigid.setText(""+rs.getString("pid"));
+                    add.add.setEnabled(false);
+                    add.edit.setEnabled(true);
+                    add.delete.setEnabled(false);
+                   add.setVisible(true);
+                   this.dispose();            
+                }
+        
+                    
                 }
 
             } catch (SQLException ex) {
@@ -469,7 +545,6 @@ public class alltransact extends javax.swing.JFrame {
     private javax.swing.JLabel deleteuser;
     private javax.swing.JLabel details;
     private javax.swing.JLabel edituser;
-    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

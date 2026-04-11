@@ -193,7 +193,9 @@ public class Admin_dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_userbuttonMouseClicked
 
     private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
-            System.exit(0);        // TODO add your handling code here:
+            login login = new login();
+            login.setVisible(true);
+            this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_settingsMouseClicked
 
     private void pigbutton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pigbutton1MouseClicked

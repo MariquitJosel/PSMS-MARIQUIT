@@ -33,56 +33,119 @@ public class allpigs extends javax.swing.JFrame {
 
     }   
         public void displayData(){
-        try{
-            dbconnect dbc = new dbconnect();
-            try (ResultSet rs = dbc.getData("SELECT id,  breed, price, status FROM pigs ")) {
-                pigstable.setModel(DbUtils.resultSetToTableModel(rs));
+    try{
+        dbconnect dbc = new dbconnect();
+        Session sess = Session.getInstance();
 
-                TableColumnModel columnModel = pigstable.getColumnModel();
-                columnModel.getColumn(0).setHeaderValue("ID");
-                columnModel.getColumn(1).setHeaderValue("breed");
-                columnModel.getColumn(2).setHeaderValue("price");
-                columnModel.getColumn(3).setHeaderValue("status");
-                pigstable.getTableHeader().repaint();
-                
-            }
-        }catch(SQLException ex){
-            System.out.println("Errors: "+ex.getMessage());
+        String query;
 
+        // 🔥 CONDITION
+        if(sess.getType().equalsIgnoreCase("admin")){
+            // Admin → see all pigs
+            query = "SELECT id, breed, price, status FROM pigs";
+        } else {
+            // User → only pigs from their transactions
+            query = "SELECT DISTINCT pigs.id, pigs.breed, pigs.price, pigs.status " +
+                    "FROM pigs " +
+                    "INNER JOIN transacts ON pigs.id = transacts.pid " +
+                    "WHERE transacts.uid = " + sess.getId();
         }
 
+        try (ResultSet rs = dbc.getData(query)) {
+
+            // 🔥 EMPTY STATE
+            if (!rs.isBeforeFirst()) {
+                String message;
+
+                if(sess.getType().equalsIgnoreCase("user")){
+                    message = "You have no pigs yet";
+                } else {
+                    message = "No pig records found";
+                }
+
+                javax.swing.table.DefaultTableModel model =
+                    new javax.swing.table.DefaultTableModel(
+                        new Object[][]{{message}},
+                        new String[]{"Message"}
+                    );
+
+                pigstable.setModel(model);
+                return;
+            }
+
+            pigstable.setModel(DbUtils.resultSetToTableModel(rs));
+
+            TableColumnModel columnModel = pigstable.getColumnModel();
+            columnModel.getColumn(0).setHeaderValue("ID");
+            columnModel.getColumn(1).setHeaderValue("Breed");
+            columnModel.getColumn(2).setHeaderValue("Price");
+            columnModel.getColumn(3).setHeaderValue("Status");
+            pigstable.getTableHeader().repaint();
+        }
+
+    }catch(SQLException ex){
+        System.out.println("Errors: "+ex.getMessage());
     }
+}
 
     public void searchdata(){
     try{
         dbconnect dbc = new dbconnect();
-        
+        Session sess = Session.getInstance();
+
         String keyword = search.getText().trim();
 
-        // If search box is empty, show all data
         if(keyword.isEmpty()){
             displayData();
             return;
         }
 
-        String query = "SELECT id, breed, price, status FROM pigs "
-                     + "WHERE id LIKE '%" + keyword + "%' "
-                     + "OR breed LIKE '%" + keyword + "%' "
-                     + "OR price LIKE '%" + keyword + "%' "
-                     + "OR status LIKE '%" + keyword + "%'";
+        String baseQuery;
+        String condition =
+            " WHERE (pigs.id LIKE '%" + keyword + "%' " +
+            "OR pigs.breed LIKE '%" + keyword + "%' " +
+            "OR pigs.price LIKE '%" + keyword + "%' " +
+            "OR pigs.status LIKE '%" + keyword + "%')";
+
+        String query;
+
+        if(sess.getType().equalsIgnoreCase("admin")){
+            baseQuery = "SELECT id, breed, price, status FROM pigs";
+            query = baseQuery + condition;
+
+        } else {
+            baseQuery = "SELECT DISTINCT pigs.id, pigs.breed, pigs.price, pigs.status " +
+                        "FROM pigs " +
+                        "INNER JOIN transacts ON pigs.id = transacts.pid";
+
+            query = baseQuery + condition +
+                    " AND transacts.uid = " + sess.getId();
+        }
 
         ResultSet rs = dbc.getData(query);
 
-        // If no result found
+        // 🔥 EMPTY STATE
         if (!rs.isBeforeFirst()) {
-            JOptionPane.showMessageDialog(null, "No records found.");
-            displayData();
+            String message;
+
+            if(sess.getType().equalsIgnoreCase("user")){
+                message = "No pigs found for your transactions";
+            } else {
+                message = "No matching pigs found";
+            }
+
+            javax.swing.table.DefaultTableModel model =
+                new javax.swing.table.DefaultTableModel(
+                    new Object[][]{{message}},
+                    new String[]{"Message"}
+                );
+
+            pigstable.setModel(model);
             return;
         }
 
         pigstable.setModel(DbUtils.resultSetToTableModel(rs));
 
-        // Set column headers
         TableColumnModel columnModel = pigstable.getColumnModel();
         columnModel.getColumn(0).setHeaderValue("ID");
         columnModel.getColumn(1).setHeaderValue("Breed");
@@ -115,7 +178,6 @@ public class allpigs extends javax.swing.JFrame {
         details = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pigstable = new javax.swing.JTable();
-        id = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
@@ -229,10 +291,6 @@ public class allpigs extends javax.swing.JFrame {
         jScrollPane1.setViewportView(pigstable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 760, 520));
-
-        id.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        id.setText("id");
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, 90, 40));
         jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 380, 40));
 
         jLabel2.setBackground(new java.awt.Color(0, 204, 153));
@@ -447,7 +505,6 @@ int rowIndex = pigstable.getSelectedRow();
     public javax.swing.JLabel deletepig;
     private javax.swing.JLabel details;
     private javax.swing.JLabel edituser;
-    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

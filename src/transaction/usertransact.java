@@ -6,49 +6,30 @@
 package transaction;
 
 
-import admin_interface.Admin_dashboard;
+
 import config.Session;
 import config.dbconnect;
-import java.awt.Color;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import psms.mariquit.login;
-import user_interface.User_dashboard;
 
 
-public class addtransact extends javax.swing.JFrame {
+
+public class usertransact extends javax.swing.JFrame {
 
     /**
      * Creates new form allusers
      */
-    public addtransact() {
+    public usertransact() {
         initComponents();
        
 
     }   
        
-public void loadcustomers() {
-    try {
-         dbconnect dbc = new dbconnect();
-        String sql = "SELECT userid, fullname FROM users";
-        PreparedStatement pst = dbc.connect.prepareStatement(sql);
-        ResultSet Rss = pst.executeQuery();
-        
-        
-        customers.removeAllItems();
-        
-        while (Rss.next()) {
-            String position = Rss.getString("fullname");
-            customers.addItem(position);
-        }
 
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Error loading customer: " + ex.getMessage());
-    }
-}
 
 
 public void loadpigs(){
@@ -74,20 +55,11 @@ public void loadpigs(){
     
      public boolean getids(){ 
        dbconnect dbc = new dbconnect();
-     try {    
-             
-        String queryusers = "SELECT * FROM users WHERE fullname = '" + customers.getSelectedItem().toString() + "'";
+     try {           
         String querypig = "SELECT * FROM pigs WHERE breed = '" + pig.getSelectedItem().toString() + "'";
-
-        ResultSet rsu = dbc.getData(queryusers);
         ResultSet rsp = dbc.getData(querypig);
         boolean valid = true;
 
-        if (rsu.next()) {
-            uid = rsu.getInt("userid");
-        } else {
-            valid = false;
-        }
 
         if (rsp.next()) {
             pid = rsp.getInt("id");
@@ -121,20 +93,16 @@ public void loadpigs(){
         quantity = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         payment = new javax.swing.JTextField();
         sd = new javax.swing.JLabel();
         pig = new javax.swing.JComboBox<>();
-        customers = new javax.swing.JComboBox<>();
         id = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         delete = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
         total = new javax.swing.JTextField();
         pigid = new javax.swing.JTextField();
-        cusid = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         back1 = new javax.swing.JLabel();
@@ -204,7 +172,7 @@ public void loadpigs(){
         usertype.setBackground(new java.awt.Color(51, 204, 0));
         usertype.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         usertype.setForeground(new java.awt.Color(255, 255, 255));
-        usertype.setText("ADD TRANSACTION - FOR ADMIN");
+        usertype.setText("ADD TRANSACTION - FOR USER");
         usertype.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         usertype.setOpaque(true);
         jPanel1.add(usertype, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 40));
@@ -224,12 +192,7 @@ public void loadpigs(){
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 153, 0));
         jLabel13.setText("pig:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 350, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel12.setText("customer id:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 180, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 350, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 0));
@@ -247,9 +210,7 @@ public void loadpigs(){
         sd.setText("total:");
         jPanel1.add(sd, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 170, 20));
 
-        jPanel1.add(pig, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 350, 40));
-
-        jPanel1.add(customers, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 350, 40));
+        jPanel1.add(pig, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 350, 40));
 
         id.setEnabled(false);
         id.addActionListener(new java.awt.event.ActionListener() {
@@ -258,11 +219,6 @@ public void loadpigs(){
             }
         });
         jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 350, 40));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel9.setText("customer:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 350, -1));
 
         delete.setBackground(new java.awt.Color(51, 204, 0));
         delete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -285,9 +241,6 @@ public void loadpigs(){
 
         pigid.setEnabled(false);
         jPanel1.add(pigid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 180, 30));
-
-        cusid.setEnabled(false);
-        jPanel1.add(cusid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 180, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 153, 0));
@@ -333,25 +286,27 @@ public void loadpigs(){
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
           if (getids()){
+               Session sess = Session.getInstance();
               dbconnect dbc = new dbconnect();
         int qty = Integer.parseInt(quantity.getText());
         int ttl = price * qty;
-        if(uid == 0 || pid == 0){
-        JOptionPane.showMessageDialog(null, "select customer or pigs first");
+        if(pid == 0){
+        JOptionPane.showMessageDialog(null, "select pig first");
         }
         else{
-        cusid.setText(String.valueOf(uid));
         pigid.setText(String.valueOf(pid));
         total.setText(String.valueOf(ttl));
        dbc.insertData("INSERT INTO transacts(uid, pid,status,quantity, payment,total) VALUES ('"
-                 + uid + "', '"
+                 + sess.getId() + "', '"
                  + pid + "', '"
                  + status.getSelectedItem()+ "', '"
                  + quantity.getText() + "', '"
                  + payment.getText() + "', '"
                  + ttl +"')");
          JOptionPane.showMessageDialog(null,"transaction created successfully.");
-
+         alltransact all = new alltransact();
+        all.setVisible(true);
+        this.dispose();
         }           
         }
         
@@ -374,7 +329,7 @@ public void loadpigs(){
         
         utype.setText(""+sess.getType());
         loadpigs();
-        loadcustomers();
+
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -389,16 +344,17 @@ public void loadpigs(){
     private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
        if (getids()){
               dbconnect dbc = new dbconnect();
+               Session sess = Session.getInstance();
         int qty = Integer.parseInt(quantity.getText());
         int ttl = price * qty;
-        if(uid == 0 || pid == 0){
-        JOptionPane.showMessageDialog(null, "select customer or pigs first");
+        if( pid == 0){
+        JOptionPane.showMessageDialog(null, "select pig first");
         }
         else{
-        cusid.setText(String.valueOf(uid));
+       
         pigid.setText(String.valueOf(pid));
         total.setText(String.valueOf(ttl));
-       dbc.insertData("UPDATE transacts SET uid ='"+cusid.getText()+"', pid ='"+pigid.getText()+"', status ='"+status.getSelectedItem()+"',"
+       dbc.insertData("UPDATE transacts SET uid ='"+sess.getId()+"', pid ='"+pigid.getText()+"', status ='"+status.getSelectedItem()+"',"
                + "quantity ='"+quantity.getText()+"',payment ='"+payment.getText()+"', total ='"+ttl+"' WHERE id ='"+id.getText()+"'");
          JOptionPane.showMessageDialog(null,"transaction updated successfully.");
         alltransact all = new alltransact();
@@ -422,10 +378,10 @@ public void loadpigs(){
 
     private void back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back1MouseClicked
           if (getids()){
-          if(uid == 0 || pid == 0){
-        JOptionPane.showMessageDialog(null, "select customer or pigs first");
+          if( pid == 0){
+        JOptionPane.showMessageDialog(null, "select pig first");
         }else{
-        cusid.setText(String.valueOf(uid));
+ 
         pigid.setText(String.valueOf(pid));
         prce.setText(String.valueOf(price));
         int qty = Integer.parseInt(quantity.getText());
@@ -458,14 +414,30 @@ public void loadpigs(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addtransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usertransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addtransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usertransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addtransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usertransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addtransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(usertransact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -486,7 +458,7 @@ public void loadpigs(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addtransact().setVisible(true);
+                new usertransact().setVisible(true);
             }
         });
     }
@@ -495,20 +467,16 @@ public void loadpigs(){
     public javax.swing.JLabel add;
     private javax.swing.JLabel back;
     private javax.swing.JLabel back1;
-    public javax.swing.JTextField cusid;
-    public javax.swing.JComboBox<String> customers;
     public javax.swing.JLabel delete;
     public javax.swing.JLabel edit;
     public javax.swing.JTextField id;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField payment;
     public javax.swing.JComboBox<String> pig;

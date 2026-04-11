@@ -113,7 +113,6 @@ public class allusers extends javax.swing.JFrame {
         details = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userstable = new javax.swing.JTable();
-        id = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
@@ -227,10 +226,6 @@ public class allusers extends javax.swing.JFrame {
         jScrollPane1.setViewportView(userstable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 760, 520));
-
-        id.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        id.setText("id");
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, 90, 40));
         jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 380, 40));
 
         jLabel2.setBackground(new java.awt.Color(0, 153, 0));
@@ -452,7 +447,6 @@ int rowIndex = userstable.getSelectedRow();
     private javax.swing.JLabel deleteuser;
     private javax.swing.JLabel details;
     private javax.swing.JLabel edituser;
-    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
